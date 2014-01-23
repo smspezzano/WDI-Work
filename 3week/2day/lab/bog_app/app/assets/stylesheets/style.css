@@ -1,0 +1,78 @@
+/** {
+	border: dotted 1px white;
+}*/
+body {
+	background: url(http://upload.wikimedia.org/wikipedia/commons/f/f5/Taiwan_2009_JinGuaShi_Historic_Gold_Mine_Moss_Covered_Retaining_Wall_FRD_8940.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+
+.home {
+	color: black;
+	background: #FFFFF7;
+	-moz-box-shadow: 0 0 40px black; 
+	-webkit-box-shadow: 0 0 40px black; 
+	box-shadow: 0 0 40px black; 
+	border-radius: 10px;
+	width: 200px;
+	height: 100px;
+	margin-top: 50px;
+	margin-left: 40%; 
+	font-size: 20px;
+	text-align: center;
+	opacity: .9;
+}
+
+
+.text {
+	
+	color: black;
+	background: #FFFFF7;
+	-moz-box-shadow: 0 0 40px black; 
+	-webkit-box-shadow: 0 0 40px black; 
+	box-shadow: 0 0 40px black; 
+	border-radius: 10px;
+	width: 300px;
+	height: 500px;
+	margin-top: 50px;
+	margin-left: 40%; 
+	font-size: 20px;
+	text-align: center;
+	opacity: .9;
+}
+
+
+
+input {
+	border: solid 2px black;
+}
+
+textarea {
+	border: solid 2px black
+}
+
+header {
+	background-color: white;
+	opacity: .9;
+	border-radius: 5px;
+}
+
+nav {
+	display: inline-block;
+}
+
+nav ul {
+	display: inline-block;
+}
+
+nav ul li {
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+	margin: 20px;
+	font-size: 18px;
+}
+

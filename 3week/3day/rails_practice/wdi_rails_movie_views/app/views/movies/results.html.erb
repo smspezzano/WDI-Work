@@ -1,0 +1,13 @@
+<h1 class='first_header'>Movie Results</h1>
+
+<div class='container'>
+	<% @result.each do |movie| %>
+	<% #binding.pry %>
+	<ul>
+		<li><%= movie['Title'] %> <%= movie['Year'] %></li>
+	</ul>
+		<% end %>
+</div>
+
+<h3>These movies have been added to your DB!</h3>
+<a href="/movies">Check it out!</a>

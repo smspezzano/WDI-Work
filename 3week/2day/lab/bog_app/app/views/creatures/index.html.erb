@@ -1,0 +1,18 @@
+<div class='text'>
+<% if @creatures.empty? %>
+<p>No creatures here!</p>
+<a href="/creatures/new">How about you create one!</a>
+<% else %>
+<p>Here are the current creatures:</p>
+<% @creatures.each do |creature| %>
+	<div>
+		Name: <%= creature[:name] %><br>
+		Description: <%= creature[:description] %><br> 
+		<a href="/creatures/<%=creature[:id]%>/edit">Edit this creature</a><br>
+		<a href="/creatures/<%=creature[:id]%>/delete">Delete this creature</a>
+		<br><br>
+	</div>
+<% end %>
+<a href="/creatures/new">Create a new creature</a>
+<% end %>
+</div>

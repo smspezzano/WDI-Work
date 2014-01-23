@@ -1,0 +1,12 @@
+<ul>
+  <% if @categories.nil? %>
+  <p>Nothing to see here!</p>
+  <% else %>
+  <% @categories.each do |category| %>
+    <li> <a href="categories/<%=category["id"]%>"> View <%= category["name"]%></a></li>
+  <% end %>
+</ul>
+<% end %>
+<a href="categories/new"> Create a new category.</a>
+
+

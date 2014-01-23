@@ -1,0 +1,11 @@
+<!-- Form to create new plane -->
+
+<form action="/planes" method="post">
+        <input type="text" name="plane[name]"><br>
+        <input type="text" name="plane[engine_type]"><br>
+        <textarea name="plane[description]"></textarea><br>
+        <!-- Need this to pass Rails security function -->
+        <%= token_tag form_authenticity_token %>
+        
+        <button> Lift offffffff!</button><br>
+    </form>

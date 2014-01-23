@@ -1,0 +1,33 @@
+<div class='last_page'>
+<h1 class='first_header'>Movie Info</h1>
+
+  
+ <h3 ><%= @individual_movie['Title']%></h3>
+</div>
+<div class="row">
+  <div class="col-sm-1 col-md-1 col-lg-1"></div>
+ <div class='poster_div col-sm-5 col-md-5 col-lg-5'>
+  <a  href="http://www.imdb.com/title/<%= @individual_movie['imdbID']%>"><img class='poster' src="<%= @individual_movie['Poster']%>"></a> <br>
+</div>
+<div class = 'info col-sm-5 col-md-5 col-lg-5'>
+  <ul>
+
+  	<li>Plot: <%= @individual_movie['Plot']%></li>
+  	<li>Year: <%= @individual_movie['Year']%></li>
+  	<li>Rating: <%= @individual_movie['Rated']%></li>
+  	<li>Runtime: <%= @individual_movie['Runtime']%></li>
+  	<li>Director(s): <%= @individual_movie['Director']%></li>
+  	<li>Actor(s):<%= @individual_movie['Actors']%></li>
+
+
+  </ul>
+
+
+</div>
+<div class="col-sm-1 col-md-1 col-lg-1"></div>
+</div>
+
+  <a id='search' href="/">New Search</a>
+
+
+

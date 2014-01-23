@@ -1,0 +1,9 @@
+<p>Hello, planes!</p>
+<!-- Running a loop to access each hash in the plane array -->
+<% @planes.each do |plane| %>
+	<div>
+	Name: <%= plane[:name] %><br>
+	Engine-Type: <%= plane[:engine_type] %><br>
+	Description: <%= plane[:description] %><br><br>
+</div>
+<% end %>

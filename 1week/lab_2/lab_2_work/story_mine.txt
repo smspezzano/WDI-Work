@@ -1,0 +1,20 @@
+~p1
+So, you want to play fantasy football?
+
+Do you want to play in a(n)...
+
+~p1:c1:p2
+auction league
+~p1:c2:p3
+ppr league
+~p1:c3:p4
+keeper league
+
+~p2
+We've got a future GM here! In this format GMs nominate players (in order) to be bid on by all GMs in the league. Each franchise has a cap (standard is $200) that they can spend on their entire roster. 
+
+~p3
+This version is becoming very hot recently!  It was created as an effort to make Wide Receivers and Tight Ends more relevant to fantasy scoring. In this alternate scoring system, fractional or full points are awarded for every reception tallied by a player. This changes the value of players in typical fantasy football scoring, as running backs who catch many passes become more valuable, those who catch fewer are less valuable, and so on.
+
+~p4
+So you want to play for the future! A Keeper style fantasy football league allows teams to keep players from one year to the next. Traditionally, league rules dictate the number of players that can be kept from year to year, as well as the 'penalty' for keeping a player. The standard 'penalty' for keeping a player is the forfeiture of a draft pick two rounds earlier than the player was selected. 

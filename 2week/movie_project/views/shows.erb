@@ -1,0 +1,11 @@
+<h1 class='first_header'>Movie Results</h1>
+
+<div class='container'>
+
+	<% @movie_list.each do |movie| %>
+	<ul>
+		<a href="../poster/<%= movie.id %>"><li id='results_list'><%= movie.title %> <%= movie.year %></li></a>
+	</ul>
+		<% end %>
+</div>
+

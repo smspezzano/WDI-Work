@@ -1,0 +1,9 @@
+.left {
+	height: 50px;
+	background-color: LightSalmon;
+}
+
+.right {
+	padding: 50px;
+	background-color: green;
+}

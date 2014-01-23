@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movies</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" type ="text/css" href="/assets/bootstrap.min.css">
+  <link rel="stylesheet" type ="text/css" href="/assets/style.css">
+</head>
+<body>     
+  <nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">Home</a>
+    <a class="navbar-brand" href="/movies">See All Movies</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <a class="navbar-brand" href="/movies/new">Add A Movie To The DB</a>
+    <form class="navbar-form navbar-left" role="search" accept-charset="UTF-8" action="/results" method="post">
+    	<div class="form-group">
+    		<input class="form-control" placeholder="Search For A Movie!" id="movie" name="movie" type="text" />
+    	</div>
+    	 <button name="commit" type="submit" class="btn btn-default">Submit</button>
+ 	</form>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+<%= yield %>
+
+</body>
+</html>
