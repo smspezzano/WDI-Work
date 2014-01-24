@@ -3,13 +3,11 @@ class PeopleController < ApplicationController
     # remember the domain name selected
     @email_domain = params[:email_domain] || 'All'
 
-    # get all people
-    @people = Person.all
+    # get all people matching a domain name
+    @people = Person.find_all_with_email_domain @email_domain
 
     # get all the available domain names
-    @email_domains = @people.map { |p| p.email.split('@').last }.uniq.sort
-
-    # filter the people based on domain name, when provided
-    @people.to_a.select! { |p| p.email.index @email_domain } unless @email_domain == 'All'
+    @email_domains = Person.all_email_domains
+    
   end
 end
