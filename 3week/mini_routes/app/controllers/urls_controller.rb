@@ -29,19 +29,21 @@ class UrlsController < ApplicationController
 	end
 
 	def site(url) 
-	u = URI.parse(url.link)
-		if(!u.scheme)
-    		url.link = "http://#{url.link}"
-    	end
+		u = URI.parse(url.link)
+			if(!u.scheme)
+    			url.link = "http://#{url.link}"
+    		end
 	end
 
-	def update
-		link = params[:id]
-		updated_info = params.require(:url).permit(:count + 1)
-		@url = Url.find(link)
-		@url.update_attributes(updated_info)
-		redirect_to url_path(@url.id)
+	def edit
+		id = params[:id]
+    	url = Url.find(id)
+    	updated_info = params.require(:url).permit(:random_string)
+    	url.update_attributes(updated_info)
+    	redirect_to action: :show
 	end
+
+	# create_with(random_string: new_url["random_string"], count: new_url["count"]).find_or_create_by(link: new_url['link'])
 
 	helper_method :site
 
