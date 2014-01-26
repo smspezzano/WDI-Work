@@ -28,7 +28,7 @@ class UrlsController < ApplicationController
 		# (@url.count).to_i += 1
 	end
 
-	def site url
+	def site(url) 
 	u = URI.parse(url.link)
 		if(!u.scheme)
     		url.link = "http://#{url.link}"
@@ -42,4 +42,7 @@ class UrlsController < ApplicationController
 		@url.update_attributes(updated_info)
 		redirect_to url_path(@url.id)
 	end
+
+	helper_method :site
+
 end

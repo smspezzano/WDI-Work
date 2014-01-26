@@ -1,8 +1,11 @@
 <div>     
 
     <p>
+    	<% site(@url) %>
     	<% #binding.pry %>
-     <%= @url.random_string %> 
+
+    <a href= "<%=@url.link %> "><%=@url.random_string %></a>
+
     </p>
 
 
