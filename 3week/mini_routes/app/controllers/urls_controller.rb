@@ -21,6 +21,15 @@ class UrlsController < ApplicationController
 		@url = Url.find(id)
 	end
 
+	def small
+		random_string = params[:random_string] 
+		@url = Url.find_by(random_string: random_string)
+	end
+
+	def site
+		#get actual URL out of model
+	end
+
 	def update
 		link = params[:id]
 		updated_info = params.require(:url).permit(:count + 1)
