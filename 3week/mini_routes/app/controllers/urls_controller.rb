@@ -39,11 +39,14 @@ class UrlsController < ApplicationController
 		id = params[:id]
     	url = Url.find(id)
     	updated_info = params.require(:url).permit(:random_string)
-    	url.update_attributes(updated_info)
+    	#binding.pry
+    		if Url.find_by(random_string: params[:url][:random_string])
+				flash[:warning]="That short URL already exists! Please enter a different short URl:"
+			else
+				url.update_attributes(updated_info)
+			end
     	redirect_to action: :show
 	end
-
-	# create_with(random_string: new_url["random_string"], count: new_url["count"]).find_or_create_by(link: new_url['link'])
 
 	helper_method :site
 
