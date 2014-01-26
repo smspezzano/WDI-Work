@@ -1,9 +1,17 @@
 <div>     
 
     <p>
+    	<% uri = URI.parse(@url.link) %>
+    	<% if(!uri.scheme) %>
+    		<% @url.link = "http://#{@url.link}" %>
+    	<% #url = url.slice! "http://localhost:3000/" %>
     	<% #binding.pry %>
-        <%= @url.link %>
+      <a href= "<%=@url.link %> "><%=@url.link %></a>
+       <%= @url.count %>
     </p>
 
 
  </div>
+
+ <% end %>
+
