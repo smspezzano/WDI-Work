@@ -1,0 +1,5 @@
+<%= form_tag("/urls/:id", method: "get") do %>
+  <%= label_tag(:random_string, "Search for:") %>
+  <%= text_field_tag(:random_string) %>
+  <%= submit_tag("Search") %>
+<% end %>
