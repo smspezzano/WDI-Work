@@ -13,7 +13,7 @@ class UrlsController < ApplicationController
 		new_url["random_string"] = SecureRandom.urlsafe_base64(14)
 		new_url["count"] = 0
 		url = Url.create(new_url)
-		render action: :show
+		redirect_to url_path(url)
 	end
 
 	def show
