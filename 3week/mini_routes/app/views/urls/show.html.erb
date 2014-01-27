@@ -4,11 +4,13 @@
     	<% site(@url) %>
     	<% #binding.pry %>
     	<h1 class='headers'>Here's your new link:</h1><a href= "<%=@url.link %> "><%=@url.random_string %></a>
-    	<h2 class='headers'>Count: </h2><p><%= @url.count %></p>
+    	<h2 class='headers'>Views: </h2><p><%= @url.count %></p>
 
     </p>
     <h3 class='headers'>Don't like that short URL? Change it below!</h3>
     	<%= flash[:warning] %>
     <%= render partial: "form_edit" %>
 
+ <a href="/">Home</a>
  </div>
+
