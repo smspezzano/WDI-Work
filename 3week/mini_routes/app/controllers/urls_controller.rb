@@ -43,7 +43,7 @@ class UrlsController < ApplicationController
     	updated_info = params.require(:url).permit(:random_string)
     	#binding.pry
     		if Url.find_by(random_string: params[:url][:random_string])
-				flash[:warning]="That short URL already exists! Please enter a different short URl:"
+				flash[:warning]="That short URL already exists! Please enter a different short URL:"
 			else
 				url.update_attributes(updated_info)
 			end

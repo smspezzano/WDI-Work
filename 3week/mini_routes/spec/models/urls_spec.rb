@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Url do
-  describe :find_matching_link do
+  describe :show do
     before do
       # create 3 people, only one of which has the yahoo.com domain name
       @google = Url.create({ link: 'https://www.google.com/', random_string: SecureRandom.urlsafe_base64, count: '0' })
@@ -11,15 +11,15 @@ describe Url do
 
     context 'given a random_string it should show the full link' do
       it 'should return an active record relation' do
-        Url.find_matching_link(SecureRandom.urlsafe_base64).should be_an ActiveRecord::Relation
+        Url.show(SecureRandom.urlsafe_base64).should be_an ActiveRecord::Relation
       end
       
       it 'should return the matching link' do
-        Url.find_matching_link(SecureRandom.urlsafe_base64).should == [@google.link, @twitter.link, @facebook.link]
+        Url.show(SecureRandom.urlsafe_base64).should == [@google.link, @twitter.link, @facebook.link]
       end
     end
   end
-  describe :create_tiny do
+  describe :create do
     before do
       # create 3 people, only one of which has the yahoo.com domain name
       @google = Url.create({ link: 'https://www.google.com/', random_string: SecureRandom.urlsafe_base64, count: '0' })
@@ -29,11 +29,11 @@ describe Url do
 
     context 'given a link it should create a random_string' do
       it 'should take a check link for correct attributes' do
-        Url.create_tiny(@google.link).should == 'https://www.google.com/'
+        Url.create(@google.link).should == 'https://www.google.com/'
       end
 
       it 'should create a random_string' do
-        Url.create_tiny(@google.random_string).should == SecureRandom.urlsafe_base64
+        Url.create(@google.random_string).should == SecureRandom.urlsafe_base64
       end
     end
   end
