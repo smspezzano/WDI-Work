@@ -20,12 +20,14 @@ class UrlsController < ApplicationController
 	def show
 		id = params[:id]
 		@url = Url.find(id)
+		@url.increment!(:count, by = 1)
 	end
 
 	def small
 		random_string = params[:random_string] 
 		@url = Url.find_by(random_string: random_string)
-		# (@url.count).to_i += 1
+		@url.increment!(:count, by = 1)
+		#binding.pry
 	end
 
 	def site(url) 

@@ -1,0 +1,70 @@
+body {
+	background: url(http://motusfitness.com/wp-content/uploads/2014/01/big-dog-small-dog.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+#top, #bottom, #left, #right {
+	background: rgba(52, 152, 219, 1.0);
+	position: fixed;
+	}
+	#left, #right {
+		top: 0; bottom: 0;
+		width: 15px;
+		}
+		#left { left: 0; }
+		#right { right: 0; }
+		
+	#top, #bottom {
+		left: 0; right: 0;
+		height: 15px;
+		}
+		#top { top: 0; }
+		#bottom { bottom: 0; }
+
+
+#home {
+	margin-top: 70px;
+	float: left;
+	margin-left: 20px;
+}
+
+#show {
+	margin-top: 50px;
+	float: left;
+	margin-left: 25px;
+}
+
+#small {
+	margin-top: 50px;
+	float: left;
+	margin-left: 25px;
+}
+
+.headers {
+	font-family: 'Gloria Hallelujah', cursive;
+
+}
+
+a {
+	font-size: 20px;
+}
+
+p {
+	font-size: 18px;
+}
+
+@media 
+
+/* Fairly small screens including iphones */
+only screen and (max-width: 500px),
+
+/* iPads */
+only screen and (min-device-width: 768px) and (max-device-width: 1024px) 
+
+{
+	#top, #bottom, #left, #right { display: none; }
+	body {background: none;}
+}

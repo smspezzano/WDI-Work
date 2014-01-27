@@ -1,5 +1,5 @@
 <%= form_for @url, url: urls_path do |f| %>
-  <%= label_tag(:link, "URL:") %> <%= f.text_field :link %></br>
-  <%= f.submit "Create" %>
+  <%= label_tag(:link, "URL:") %> <%= f.text_field :link %>
+  <%= f.submit "Create", class: "btn btn-sm btn-primary" %>
 <% end %>
 

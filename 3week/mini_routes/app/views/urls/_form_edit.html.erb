@@ -1,4 +1,6 @@
+<div>
 <%= form_for :url, method: :get, url: edit_url_path do |f| %>
-  <%= label_tag(:random_string, "New Tiny Url:") %> <%= f.text_field :random_string, value: @url['random_string'] %></br>
-  <%= f.submit "Update" %>
+  <%= label_tag(:random_string, "New Tiny Url:") %> <%= f.text_field :random_string, value: @url['random_string'] %>
+  <%= f.submit "Update", class: "btn btn-sm btn-primary" %>
 <% end %>
+</div>

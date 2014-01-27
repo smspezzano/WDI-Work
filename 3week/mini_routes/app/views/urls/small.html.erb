@@ -1,12 +1,10 @@
-<div>     
+<div id="small">     
 
-    <p>
+    <h1 class='headers'>Here is the full link:</h1>
     	<% site(@url) %>
-      <a href= "<%=@url.link %> "><%=@url.link %></a>
-       <%= @url.count %>
-    </p>
-
-
+      <a href= "<%=@url.link %> "><%=@url.link %></a><br>
+      <h2 class='headers'>Count: </h2><p><%= @url.count %></p>
+    
  </div>
 
 
