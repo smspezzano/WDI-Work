@@ -1,5 +1,5 @@
 class UrlsController < ApplicationController
-
+before_filter :signed_in_user, only: [:create, :new, :edit]
 	def index
 		@url = Url.new
 	end
