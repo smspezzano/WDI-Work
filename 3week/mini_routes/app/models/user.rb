@@ -12,6 +12,7 @@
 
 class User < ActiveRecord::Base
 
+	before_create {|user| user.email.downcase!}
 	before_create :create_remember_token
 	
 	before_save :create_remember_token
