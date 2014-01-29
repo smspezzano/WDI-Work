@@ -1,4 +1,5 @@
 <%= form_for @category do |f| %>
-   Name: <%= f.text_field :name, placeholder: "Enter name" %> <br>
-<%= f.submit "Save it" %>
+   Name: <%= f.text_field :name, placeholder: "Enter name" %> 
+   <br><br>
+<%= f.submit "Save it", class: "btn btn-primary" %>
 <% end %>

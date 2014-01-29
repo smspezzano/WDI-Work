@@ -4,6 +4,6 @@
     <div><br>
      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name%>
     </div><br>
-    <%= f.submit "Save it" %><br>
+    <%= f.submit "Save it", class: 'btn btn-primary' %><br>
 <% end %>
 
