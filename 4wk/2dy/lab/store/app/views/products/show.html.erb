@@ -1,0 +1,15 @@
+<div>
+<h4><%= @product.name.capitalize %></h4>
+
+<h5>Categories:</h5>
+<ul>
+<% @categories.each do |c| %>
+  <li>
+    <%= c.name.capitalize %> 
+  </li>
+<% end %>
+
+<%= link_to "Edit this product", edit_product_path %>
+
+<%= button_to "Home", root_path, method: 'get', class: "btn btn-primary" %>
+</div>

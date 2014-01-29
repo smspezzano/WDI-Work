@@ -1,0 +1,13 @@
+<div>
+<h4><%= @category.name.capitalize %></h4>
+
+<h5>Products:</h5>
+<ul>
+<% @products.each do |p| %>
+  <li>
+    <%= p.name.capitalize %> 
+  </li>
+<% end %>
+
+<%= button_to "Home", root_path, method: 'get', class: "btn btn-primary" %>
+</div>

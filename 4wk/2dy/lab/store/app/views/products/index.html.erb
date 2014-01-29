@@ -1,0 +1,14 @@
+<div>
+<h3>Products</h3>
+<ul>
+  <% @products.each do |p| %>
+    <li>
+      <%= link_to p.name.capitalize, product_path(p) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= button_to "Create a new product", new_product_path, method: "get", class: "btn btn-primary"  %>
+
+<%= button_to "Home", root_path, method: 'get', class: "btn btn-primary"  %>
+</div>

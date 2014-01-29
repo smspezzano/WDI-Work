@@ -1,0 +1,9 @@
+<%= form_for @product do |f| %>
+   Name: <%= f.text_field :name, placeholder: "Enter name" %> <br>
+   Price: <%= f.text_field :price, placeholder: "Enter price" %> <br>
+    <div><br>
+     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name%>
+    </div><br>
+    <%= f.submit "Save it" %><br>
+<% end %>
+

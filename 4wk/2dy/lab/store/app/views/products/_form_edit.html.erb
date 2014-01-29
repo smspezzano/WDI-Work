@@ -1,0 +1,12 @@
+<%= form_for @product do |f| %>
+    Name:<%= f.text_field :name, placeholder: :name %> <br><br>
+    Price:<%= f.text_field :price, placeholder: :price %> <br>
+    <div><br>
+    Edit the categories of <%= @product.name.capitalize %><br><br>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    </div>
+    <%= button_to "Delete Item", destroy_product_path, method: 'delete' %>
+    
+    <%= f.submit %>
+<%end%>
+
