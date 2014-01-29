@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
 	def create
 		new_category = params.require(:category).permit(:name)
 		category = Category.create(new_category)
-		redirect_to categories_path 
+		redirect_to category_path(category.id)    
 	end
 
 	def show

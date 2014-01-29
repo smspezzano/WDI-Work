@@ -5,8 +5,7 @@
     Edit the categories of <%= @product.name.capitalize %><br><br>
     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
     </div>
-    <%= button_to "Delete Item", destroy_product_path, method: 'delete', class: "btn btn-primary" %>
-    
-    <%= f.submit "Update Product", class: 'btn btn-primary' %>
+    <%= f.submit %>
 <%end%>
+    <%= button_to "Delete Item", destroy_product_path, method: 'delete' %>
 
