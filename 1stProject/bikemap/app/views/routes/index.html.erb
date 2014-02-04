@@ -1,8 +1,10 @@
-<form name="route"  onsubmit="return MQA.withModule" method="post">
+<div id='addRoute'>
+<form>
 
-Start Location: <input type="text" id='startLocation' name="startLocation"><br>
-End Location: <input type="text" id='endLocation' name="endLocation"><br>
+Start Location: <input type="text" id='startLocation' name="startLocation" value="<%= params["startLocation"] %>"><br>
+End Location: <input type="text" id='endLocation' name="endLocation" value="<%= params["endLocation"]%>"><br>
 Road Strategy Guide:
+
 <input id="roadGradeStrategy" name="roadGradeStrategy" type="radio" value="DEFAULT_STRATEGY" />
 <label for="DEFAULT_STRATEGY">Default</label>
 <input id="roadGradeStrategy" name="roadGradeStrategy" type="radio" value="AVOID_UP_HILL" />
@@ -18,8 +20,12 @@ Road Strategy Guide:
 <input id="roadGradeStrategy" name="roadGradeStrategy" type="radio" value="FAVOR_DOWN_HILL" />
 <label for="age_adult">Favor all hills</label>
 <br>
-<input type="submit" value="Submit">
+
+<input type="submit" onclick='addRoute'>
+
 </form>
- <div id='map' style='width:750px; height:280px;'></div>
- <div id="narrative" style="width:800px;"></div>
+</div>
+<div id='map' style='width:750px; height:280px;'></div>
+ 
+<div id="narrative" style="width:800px;"></div>
  

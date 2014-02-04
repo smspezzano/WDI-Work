@@ -2,90 +2,21 @@
 <html>
 <head>
   <title>Bikemap</title>
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <script src="http://www.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluur2162nq%2C8l%3Do5-90z05a"></script>
+    <script src="http://content.mqcdn.com/sdk/js/v7.0.1/mqa.module.directions.js"></script>
+    <script src="http://content.mqcdn.com/sdk/js/v7.0.1/mqa.module.routeio.js"></script>
+    <script src="http://content.mqcdn.com/sdk/js/v7.0.1/mqa.module.route.js"></script>
+    <script src="http://content.mqcdn.com/sdk/js/v7.0.1/mqa.module.ribbon.js"></script>
+    <script src="http://content.mqcdn.com/sdk/js/v7.0.1/mqa.module.shapes.js"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <script src="http://www.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluur2162nq%2C8l%3Do5-90z05a"></script>
 
-    <script type="text/javascript">
 
-      /*An example of using the MQA.EventUtil to hook into the window load event and execute defined function
-      passed in as the last parameter. You could alternatively create a plain function here and have it
-      executed whenever you like (e.g. <body onload="yourfunction">).*/
-
-      MQA.EventUtil.observe(window, 'load', function() {
-        /*Create an object for options*/
-                /*Create an object for options*/
-        var options={
-          elt:document.getElementById('map'),        /*ID of element on the page where you want the map added*/
-          zoom:10,                                   /*initial zoom level of map*/
-          latLng:{lat:37.7833, lng:-122.4167},   /*center of map in latitude/longitude*/
-          mtype:'map',                               /*map type (map)*/
-          bestFitMargin:0,                           /*margin offset from the map viewport when applying a bestfit on shapes*/
-          zoomOnDoubleClick:true                     /*zoom in when double-clicking on map*/
-        };
-
-        /*Construct an instance of MQA.TileMap with the options object*/
-        window.map = new MQA.TileMap(options);
-
-        MQA.withModule('directions', function() {
-          map.addRoute([
-            {start: document.getElementById('startLocation')},
-            {end: document.getElementById('endLocation')}],
-
-            /*Add options.*/
-            {routeOptions: { ambiguities: ['ignore'], 
-            					routeType:['bicyle'], 
-            					manMaps:['false'], 
-            					roadGradeStrategy: [document.getElementById('roadGradeStrategy')]
-            				}, 
-            ribbonOptions:{draggable:true}},
-
-            /*Add the callback function to the route call.*/
-            displayNarrative
-          );
-        });
-
-     });
-
-        // Construct an instance of MQA.TileMap with the options object
-        // window.map = new MQA.TileMap(options);
-
-        
-
-      /*Example function inspecting the route data and generating a narrative for display.*/
-      function displayNarrative(data){
-        if(data.route){
-          var legs = data.route.legs, html = '', i = 0, j = 0, trek, maneuver;
-          html += '<table><tbody>';
-
-          for (; i < legs.length; i++) {
-            for (j = 0; j < legs[i].maneuvers.length; j++) {
-              maneuver = legs[i].maneuvers[j];
-              html += '<tr>';
-              html += '<td>';
-
-              if (maneuver.iconUrl) {
-                html += '<img src="' + maneuver.iconUrl + '">  ';
-              }
-
-              for (k = 0; k < maneuver.signs.length; k++) {
-                var sign = maneuver.signs[k];
-                if (sign && sign.url) {
-                  html += '<img src="' + sign.url + '">  ';
-                }
-              }
-              html += '</td><td>' + maneuver.narrative + '</td>';
-              html += '</tr>';
-            }
-          }
-          html += '</tbody></table>';
-          document.getElementById('narrative').innerHTML = html;
-        }
-      }
-    </script>
+    
 </head>
-<body onload="MQA.EventUtil.observe()">
+<body >
 
 <%= yield %>
 
