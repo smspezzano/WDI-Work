@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <script src="http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Kmjtd%7Cluua2qu7n9%2C7a%3Do5-lzbgq"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+      /*An example of using the MQA.EventUtil to hook into the window load event and execute defined function
+      passed in as the last parameter. You could alternatively create a plain function here and have it
+      executed whenever you like (e.g. <body onload="yourfunction">).*/
+
+      MQA.EventUtil.observe(window, 'load', function() {
+
+        /*Arrays to hold lat/lng data for use with the Directions module*/
+        var latitude = new Array;
+        var longitude = new Array;
+
+        /*Addresses that need to be geocoded*/
+        var locations = new Array('22 Terra Vista Ave, San Francisco, CA, 94115', '414 Brannan St, San Francisco, CA');
+
+        $(document).ready(function() {
+          /*Using the Nominatim API Service to geocode the addresses in the locations array*/
+          for (i=0; i<locations.length; i++) {
+            $.ajax({
+              url: 'http://open.mapquestapi.com/nominatim/v1/search',
+              dataType: 'json',
+              async: false,
+              crossDomain: true,
+              data: {
+                q: locations[i],
+                format: 'json'
+              },
+
+              success: function(data, textStatus, jqXHR) {
+                /*Storing the lat/lngs in an array for later use*/
+                latitude.push(data[0].lat);
+                longitude.push(data[0].lon);
+
+                /*Get map and create the route when done*/
+                if(i==locations.length-1) {
+                  getMap();
+                }
+              }
+            });
+          }
+
+          function getMap() {
+
+            /*Create an object for options*/
+            var options={
+              elt:document.getElementById('map'),        /*ID of element on the page where you want the map added*/
+              zoom:13,                                   /*initial zoom level of map*/
+              latLng:{lat:37.78149, lng:-122.439155},    /*center of map in latitude/longitude*/
+              mtype:'osm'                                /*map type (osm)*/
+            };
+
+            /*Construct an instance of MQA.TileMap with the options object*/
+            window.map = new MQA.TileMap(options);
+
+            /*This uses the MQA.withModule support to download and initialize the routing support modules. When the
+            modules are ready for use, the function provided as the last parameter will be executed.*/
+            MQA.withModule('directions', function() {
+
+              /*Uses the MQA.TileMap.addRoute function (added to the TileMap with the directions module)
+              passing in an array of location objects as the only parameter.*/
+              map.addRoute([
+                {latLng: {lat:latitude[0], lng:longitude[0]}},
+                {latLng: {lat:latitude[1], lng:longitude[1]}}
+              ]);
+            });
+          }
+        });
+      });
+
+    </script>
+  </head>
+
+  <body>
+    <div id='map' style='width:750px; height:280px;'></div>
+  </body>
+</html>
+      

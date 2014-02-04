@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- <html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<script type="text/javascript">
+window.onload =
+
+var moveImg = function(){
+var wid = document.body.clientWidth;
+var i = 1;
+// var moveRight = true
+var pic=getElementById("hater");
+
+// if (pic.offsetLeft < wid.innerWidth) {
+	pic.offsetLeft + i +"px";
+};
+i++;
+};
+
+setInterval(moveImg,)
+
+
+</script>
+	<img id="hater" src="moonwalk.gif" > 
+</body>
+</html>
+
+
+<!-- document.body.clientHeight and document.body.clientWidth
+element.width and element.offsetLeft
+setTimeout or setInterval
+ -->
+ -->
+
+ <html>
+  <head>
+    <script> 
+      var flip = function(ele){
+        ele.classList.toggle('flipped');
+      }
+      var move = 10;
+ 
+      var moveBoss = function(){
+        ele = document.querySelector('#boss');
+ 
+        if(ele.width + ele.offsetLeft >= (window.innerWidth + 200) ||
+            ele.offsetLeft < -200){
+          move = move * -1;
+          flip(ele);
+        }
+ 
+        ele.style.left = (ele.offsetLeft + move) + "px";
+        //ele.style.height= Math.max(150,Math.sin((ele.offsetLeft/(window.innerWidth + 200))*Math.PI)*480);
+      };
+ 
+      setInterval(moveBoss, 100);
+  </script>
+    <style>
+      #boss{
+        position: absolute;
+      }
+      .flipped{
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+      }
+    </style>
+  </head>
+  <body>
+    <img id="boss" src="https://a248.e.akamai.net/camo.github.com/56a9cd8b7e9ebbdcc75dc7baf56986a08650f50d/687474703a2f2f74686573656172657468696e67732e636f6d2f776f726b2f686174657273676f6e6e61686174652f696d672f686174657273676f6e6e61686174652d30312e676966">
+  </body>
+</html>

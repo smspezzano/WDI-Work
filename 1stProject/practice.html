@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluur2162nq%2C8l%3Do5-90z05a"></script>
+
+<script type="text/javascript">/*Arrays to hold lat/lng data for use with the Directions module*/
+ var latitude = new Array;
+ var longitude = new Array;
+ 
+ /*Addresses that need to be geocoded*/
+ var locations = new Array('22 Terra Vista Ave, San Fransisco, CA', '414 Brannan St, San Francisco, CA');
+ 
+ $(document).ready(function() {
+   /*Using the Nominatim API Service to geocode the addresses in the locations array*/
+   for (i=0; i<locations.length; i++) {
+     $.ajax({
+       url: 'http://open.mapquestapi.com/nominatim/v1/search',
+       dataType: 'json',
+       async: false,
+       crossDomain: true,
+       data: {
+         q: locations[i],
+         format: 'json'
+       },
+ 
+       success: function(data, textStatus, jqXHR) {
+         /*Storing the lat/lngs in an array for later use*/
+         latitude.push(data[0].lat);
+         longitude.push(data[0].lon);
+ 
+         /*Get map and create the route when done*/
+         if(i==locations.length-1) {
+           getMap();
+         }
+       }
+     });
+   }
+ 
+   function getMap() {
+     window.map = new MQA.TileMap(
+       document.getElementById('map'),
+       13,
+       {lat:40.037788, lng:-76.305818},
+       'osm');
+ 
+     /*This uses the MQA.withModule support to download and initialize the routing support modules. When the
+     modules are ready for use, the function provided as the last parameter will be executed.*/
+     MQA.withModule('directions', function() {
+    
+       /*Uses the MQA.TileMap.addRoute function (added to the TileMap with the directions module)
+       passing in an array of location objects as the only parameter.*/
+       map.addRoute([
+         {latLng: {lat:latitude[0], lng:longitude[0]}},
+         {latLng: {lat:latitude[1], lng:longitude[1]}}
+       ]);
+     });
+   }
+ });
+ /*Example function inspecting the route data and generating a narrative for display.*/
+ function displayNarrative(data){
+   if(data.route){
+     var legs = data.route.legs, html = '', i = 0, j = 0, trek, maneuver;
+     html += '<table><tbody>';
+ 
+     for (; i < legs.length; i++) {
+       for (j = 0; j < legs[i].maneuvers.length; j++) {
+         maneuver = legs[i].maneuvers[j];
+         html += '<tr>';
+         html += '<td>';
+ 
+         if (maneuver.iconUrl) {
+           html += '<img src="' + maneuver.iconUrl + '">  ';
+         }
+ 
+         for (k = 0; k < maneuver.signs.length; k++) {
+           var sign = maneuver.signs[k];
+           if (sign && sign.url) {
+             html += '<img src="' + sign.url + '">  ';
+           }
+         }
+ 
+         html += '</td><td>' + maneuver.narrative + '</td>';
+         html += '</tr>';
+       }
+     }
+ 
+     html += '</tbody></table>';
+     document.getElementById('narrative').innerHTML = html;
+   }
+ }
+
+ </script>
+
+</head>
+<body>
+
+
+<div id="map" style="width:800px; height:300px;"></div>
+ <div id="narrative"></div>
+
+
+</body>
+
+
+</html>
