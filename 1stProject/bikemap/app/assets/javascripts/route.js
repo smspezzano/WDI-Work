@@ -100,6 +100,7 @@ function getProfile(sessionID) {
 
 function handleProfileResponse(response) {
   var chartArray = response.elevationProfile;
+  var chartArray2 = chartArray;
     var html = '';    
     var i = 0;
     html += '<table>';
@@ -108,11 +109,17 @@ function handleProfileResponse(response) {
     for(; i < chartArray.length; i++) {
       html += '<tr><td>';
       html += chartArray[i].height;
-      html += '</td>'
+      html += '</td>';
       html += '<td>';
       html += chartArray[i].distance;
+      html += '</td>';
+    };
+    html += '<tr><th>Change</th></tr>';
+    for(i=0; i < chartArray2.length - 1; i++) {
+      html += '<td>';
+      html += ((chartArray2[i+1].height) - (chartArray2[i].height)).toFixed(2);
       html += '</td></tr>';
-    }
+    };
     html += '</tbody></table>';
     document.getElementById('profileResponse').innerHTML = html;
 };
