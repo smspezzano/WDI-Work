@@ -20,15 +20,5 @@ class RoutesController < ApplicationController
 	    @route = Route.find(params[:id])
 	end
 
-	def getRoute(startLocation, endLocation, roadGradeStrategy)
-    return HTTParty.get('open.mapquestapi.com/directions/v2/route?', :query => {
-      :api_key => 'Fmjtd%7Cluur2162nq%2C8l%3Do5',
-      :ambiguities => 'ignore',
-      :route_type => 'bicycle',
-      :manMaps => 'false',
-      :roadGradeStrategy => roadGradeStrategy,
-      :from => startLocation,
-      :to => endLocation})
-  	end
 
 end

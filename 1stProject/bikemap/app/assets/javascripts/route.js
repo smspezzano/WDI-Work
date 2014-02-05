@@ -22,18 +22,24 @@ MQA.EventUtil.observe(window, 'load', function() {
   
   
   MQA.withModule('directions', function() {
+      var selectedVal = "";
+      var selected = $("input[type='radio'][name='roadGradeStrategy']:checked");
+      if (selected.length > 0) {
+        selectedVal = selected.val();
+      } else {
+          selectedVal = 'DEFAULT_STRATEGY'
+      };
+      /*Add options.*/
     map.addRoute([
       {street: document.getElementById('startLocation').value},
       {street: document.getElementById('endLocation').value}],
-
-      /*Add options.*/
-      { routeOptions: { ambiguities:'ignore', 
+      {routeOptions: { ambiguities:'ignore', 
       					routeType:'bicycle', 
       					manMaps:'false', 
-      					roadGradeStrategy: document.getElementById('roadGradeStrategy').value
-      				}, 
-      ribbonOptions:{draggable:true}},
-
+      					roadGradeStrategy: selectedVal
+      	}, 
+        ribbonOptions: {draggable:true}
+      },
       /*Add the callback function to the route call.*/
       displayNarrative
     );
@@ -45,9 +51,11 @@ MQA.EventUtil.observe(window, 'load', function() {
   // window.map = new MQA.TileMap(options);
 
   
-
+var sessionID = ""
 /*Example function inspecting the route data and generating a narrative for display.*/
 function displayNarrative(data){
+var thissessionID = data.route.sessionId
+sessionID = thissessionID
   if(data.route){
     var legs = data.route.legs, html = '', i = 0, j = 0, trek, maneuver;
     html += '<table><tbody>';
@@ -76,3 +84,4 @@ function displayNarrative(data){
     document.getElementById('narrative').innerHTML = html;
   }
 }
+
