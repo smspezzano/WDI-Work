@@ -3,7 +3,7 @@ class RoutesController < ApplicationController
 
 	def index
 		@strategies = {:DEFAULT_STRATEGY => 'Default Strategy', :AVOID_UP_HILL => 'Avoid up hill', 
-			:AVOID_DOWN_HIL => 'Avoid down hill', :AVOID_ALL_HILLS => 'Avoid all hills', 
+			:AVOID_DOWN_HILL => 'Avoid down hill', :AVOID_ALL_HILLS => 'Avoid all hills', 
 			:FAVOR_UP_HILL => 'Favor up hill', :FAVOR_DOWN_HILL => 'Favor down hill',
 			:FAVOR_ALL_HILLS => 'Favor all hills'
 		}
