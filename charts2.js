@@ -1,7 +1,7 @@
 
 
 var CHART = 'http://open.mapquestapi.com/elevation/v1/chart?key=Fmjtd%7Cluur2162nq%2C8l%3Do5-90z05a&inFormat=kvp&shapeFormat=raw&width=425&height=350&callback=handleChartResponse&shapeFormat=raw';
-var PROFILE = 'http://open.mapquestapi.com/elevation/v1/profile?key=Fmjtd%7Cluur2162nq%2C8l%3Do5-90z05a&callback=handleHelloWorldResponse&shapeFormat=raw';
+var PROFILE = 'http://open.mapquestapi.com/elevation/v1/profile?key=Fmjtd%7Cluur2162nq%2C8l%3Do5-90z05a&callback=handleProfileResponse&shapeFormat=raw';
 
 
 
@@ -13,11 +13,11 @@ var PROFILE = 'http://open.mapquestapi.com/elevation/v1/profile?key=Fmjtd%7Cluur
 // };
 
 
-function getChart() {
+function getProfile() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
 
-	var basicURL = CHART;
+	var basicURL = PROFILE;
 	//add sessionID that holds the lat long to the url
 	basicURL += '&sessionID=' + sessionID;	
 
@@ -27,7 +27,7 @@ function getChart() {
 }
 
 
-function handleChartResponse(response) {
+function handleProfileResponse(response) {
 	var chartArray = response.elevationProfile;
     var html = '';    
     var i = 0;
@@ -43,9 +43,9 @@ function handleChartResponse(response) {
     	html += '</td></tr>';
     }
     html += '</tbody></table>';
-	document.getElementById('routeChart').style.display = 'none';
-    document.getElementById('chartResponse').innerHTML = html;
-    document.getElementById('chartResponse').style.display = 'block'; 
+	document.getElementById('routeProfile').style.display = 'none';
+    document.getElementById('profileResponse').innerHTML = html;
+    document.getElementById('profileResponse').style.display = 'block'; 
 
 }
 
@@ -59,18 +59,18 @@ function handleChartResponse(response) {
 // };
 
 
-function doPorfile() {
+function doChart() {
 	var script = document.createElement('script');
     script.type = 'text/javascript';
 
-	var newChartURL = PROFILE;
+	var newChartURL = CHART;
 
 	newChartURL += '&inFormat=kvp&shapeFormat=raw&width=425&height=350&sessionID=' + sessionID;
 
     var newURL = newChartURL;
     script.src = newURL;
 
-	document.getElementById('routeResponse').style.display = 'none'; 
+	// document.getElementById('routeResponse').style.display = 'none'; 
 	document.getElementById('routeChart').innerHTML = '<IMG SRC ="' + script.src + '">';    
 	document.getElementById('routeChart').style.display = 'block';
 }

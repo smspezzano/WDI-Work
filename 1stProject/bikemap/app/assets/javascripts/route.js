@@ -1,10 +1,3 @@
-
-
-/*An example of using the MQA.EventUtil to hook into the window load event and execute defined function
-passed in as the last parameter. You could alternatively create a plain function here and have it
-executed whenever you like (e.g. <body onload="yourfunction">).*/
-
-
 MQA.EventUtil.observe(window, 'load', function() {
   /*Create an object for options*/
           /*Create an object for options*/
@@ -51,11 +44,11 @@ MQA.EventUtil.observe(window, 'load', function() {
   // window.map = new MQA.TileMap(options);
 
   
-var sessionID = ""
+// var sessionID; 
 /*Example function inspecting the route data and generating a narrative for display.*/
 function displayNarrative(data){
-var thissessionID = data.route.sessionId
-sessionID = thissessionID
+var thissessionID = data.route.sessionId;
+var sessionID = thissessionID;
   if(data.route){
     var legs = data.route.legs, html = '', i = 0, j = 0, trek, maneuver;
     html += '<table><tbody>';
@@ -83,5 +76,64 @@ sessionID = thissessionID
     html += '</tbody></table>';
     document.getElementById('narrative').innerHTML = html;
   }
-}
+  getProfile(sessionID);
+  doChart(sessionID);
+};
+
+var PROFILE = 'http://open.mapquestapi.com/elevation/v1/profile?key=Fmjtd%7Cluur2162nq%2C8l%3Do5-90z05a&callback=handleProfileResponse&shapeFormat=raw';
+var CHART = 'http://open.mapquestapi.com/elevation/v1/chart?key=Fmjtd%7Cluur2162nq%2C8l%3Do5-90z05a&shapeFormat=raw';
+
+
+function getProfile(sessionID) {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+
+  var basicURL = PROFILE;
+  //add sessionID that holds the lat long to the url
+  basicURL += '&sessionId=' + sessionID;  
+
+  var newURL = basicURL;
+  script.src = newURL;
+  document.getElementsByTagName('head')[0].appendChild(script);
+};
+
+
+function handleProfileResponse(response) {
+  var chartArray = response.elevationProfile;
+    var html = '';    
+    var i = 0;
+    html += '<table>';
+    html += '<tr><th>Elevation</th><th>Distance</th></tr>';
+    html += '<tbody>';  
+    for(; i < chartArray.length; i++) {
+      html += '<tr><td>';
+      html += chartArray[i].height;
+      html += '</td>'
+      html += '<td>';
+      html += chartArray[i].distance;
+      html += '</td></tr>';
+    }
+    html += '</tbody></table>';
+    document.getElementById('profileResponse').innerHTML = html;
+};
+
+
+function doChart(sessionID) {
+  var script = document.createElement('script');
+    script.type = 'text/javascript';
+
+  var newChartURL = CHART;
+
+  newChartURL += '&inFormat=kvp&shapeFormat=raw&width=425&height=350&sessionId=' + sessionID;
+  var newURL = newChartURL;
+  script.src = newURL;
+
+  document.getElementById('routeChart').innerHTML = '<IMG SRC ="' + script.src + '">';    
+};
+
+
+
+
+
+
 
