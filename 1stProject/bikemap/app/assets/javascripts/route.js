@@ -14,7 +14,37 @@ MQA.EventUtil.observe(window, 'load', function() {
   /*Construct an instance of MQA.TileMap with the options object*/
   
   
-  MQA.withModule('directions', function() {
+  MQA.withModule('largezoom','traffictoggle','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel','directions', function() {
+    map.addControl(
+      new MQA.LargeZoom(),
+      new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
+    );
+
+    map.addControl(new MQA.TrafficToggle());
+
+    map.addControl(new MQA.ViewOptions());
+
+    map.addControl(
+      new MQA.GeolocationControl(),
+      new MQA.MapCornerPlacement(MQA.MapCorner.TOP_RIGHT, new MQA.Size(10,50))
+    );
+
+    /*Inset Map Control options */
+    var options={
+      size:{width:150, height:125},
+      zoom:3,
+      mapType:'map',
+      minimized:true
+    };
+
+    map.addControl(
+      new MQA.InsetMapControl(options),
+      new MQA.MapCornerPlacement(MQA.MapCorner.BOTTOM_RIGHT)
+    );
+
+    map.enableMouseWheelZoom();
+
+    //THIS IS FOR THE ROUTEING
       var selectedVal = "";
       var selected = $("input[type='radio'][name='roadGradeStrategy']:checked");
       if (selected.length > 0) {
@@ -106,7 +136,13 @@ function handleProfileResponse(response) {
     html += '<table>';
     html += '<tr><th>Elevation</th><th>Distance</th></tr>';
     html += '<tbody>';  
-    for(; i < chartArray.length; i++) {
+    var incrementer;
+    if(chartArray.length <= 20){
+      incrementer = 1;
+    } else {
+      incrementer = Math.round(chartArray.length/20);
+    };
+    for(; i < chartArray.length; i += incrementer ) {
       html += '<tr><td>';
       html += chartArray[i].height;
       html += '</td>';
@@ -115,7 +151,7 @@ function handleProfileResponse(response) {
       html += '</td>';
     };
     html += '<tr><th>Change</th></tr>';
-    for(i=0; i < chartArray2.length - 1; i++) {
+    for(i=0; i < chartArray2.length - 1; i += incrementer) {
       html += '<td>';
       html += ((chartArray2[i+1].height) - (chartArray2[i].height)).toFixed(2);
       html += '</td></tr>';

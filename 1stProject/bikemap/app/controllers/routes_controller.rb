@@ -1,5 +1,4 @@
 class RoutesController < ApplicationController
-	require 'httparty'
 
 	def index
 		@strategies = {:DEFAULT_STRATEGY => 'Default Strategy', :AVOID_UP_HILL => 'Avoid up hill', 
