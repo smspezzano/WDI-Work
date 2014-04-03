@@ -1,28 +1,9 @@
-== README
+A small mini-lab to experiment with making API requests in Rails.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The API used was http://www.omdbapi.com/, an IMDB API. 
 
-Things you may want to cover:
+Users can search for a movie or keyword and the API returns a list of movies from
+IMDB and adds them to the database. 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Versions:
+Rails 4.0.2
